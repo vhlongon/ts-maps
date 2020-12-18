@@ -1,15 +1,10 @@
 import { User } from './User';
 import { Company } from './Company';
+import { Map } from './Map';
 
 const user = new User();
 const company = new Company();
-const container = document.getElementById('map');
+const myMap = new Map('map');
 
-function initMap(): void {
-  new google.maps.Map(document.getElementById('map') as HTMLElement, {
-    center: { lat: 0, lng: 0 },
-    zoom: 1,
-  });
-}
-
-initMap();
+myMap.addMarker(user);
+myMap.addMarker(company);

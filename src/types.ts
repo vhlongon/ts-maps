@@ -3,7 +3,11 @@ export interface LocationType {
   lng: number;
 }
 
-export interface EntityType {
+export interface Mappable {
   name: string;
   location: LocationType;
 }
+
+export type MapType = google.maps.Map;
+
+export type MarkerType = google.maps.Marker;
