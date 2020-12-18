@@ -1,4 +1,8 @@
-import { generateGoogleMap, generateGoogleMapMarker } from './googleMap';
+import {
+  generateGoogleMap,
+  generateGoogleMapMarker,
+  generateGoogleMapInfoWindow,
+} from './googleMap';
 import { Mappable, MapType, MarkerType } from './types';
 
 const defaultOptions = { center: { lat: 0, lng: 0 }, zoom: 1 };
@@ -12,9 +16,14 @@ export class Map {
   }
 
   addMarker(entity: Mappable): void {
-    const { name: title, location: position } = entity;
+    const { name, location } = entity;
+    const marker = generateGoogleMapMarker(this.googleMap, location, name);
+    const infoWindow = generateGoogleMapInfoWindow(entity.markerContent());
 
-    const marker = generateGoogleMapMarker(this.googleMap, position, title);
+    marker.addListener('click', () => {
+      infoWindow.open(this.googleMap, marker);
+    });
+
     this.marker = marker;
   }
 }

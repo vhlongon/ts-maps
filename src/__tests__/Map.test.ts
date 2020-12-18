@@ -7,8 +7,10 @@ describe('Map', () => {
   const googleMaps = createGoogleMapsMock();
   const mockedMap = new googleMaps.Map();
   const mockedMarker = new googleMaps.Marker();
+  const mockedInfoIndow = new googleMaps.InfoWindow();
   jest.spyOn(googleMapUtils, 'generateGoogleMap').mockReturnValue(mockedMap);
   jest.spyOn(googleMapUtils, 'generateGoogleMapMarker').mockReturnValue(mockedMarker);
+  jest.spyOn(googleMapUtils, 'generateGoogleMapInfoWindow').mockReturnValue(mockedInfoIndow);
 
   test('it creates a map using google maps and a marker for a user or company', () => {
     const map = new Map('id');
